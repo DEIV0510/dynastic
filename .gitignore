@@ -1,0 +1,37 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# artefactos locales de las utilidades de imagen y auditoría
+scripts/_cut/
+scripts/_alpha/
+scripts/_shots/
+scripts/_sheet*.png
+scripts/_c*.png
+scripts/_crop.png
+scripts/dbg.mjs
+scripts/t.mjs
+scripts/probe.mjs
+scripts/sample.mjs
+scripts/inspect.mjs

@@ -1,0 +1,139 @@
+# DYNASTIC — Tecnología e Innovación
+
+Presencia digital de DYNASTIC (La Virginia, Risaralda). Venta online con cierre
+por WhatsApp y preventa, construida para crecer hacia un e-commerce completo.
+
+- **Stack:** React 19 + TypeScript + Vite + Tailwind CSS + Framer Motion + React Router
+- **WhatsApp:** `+57 310 421 8808` · **Instagram:** [@dinasticvibe](https://instagram.com/dinasticvibe)
+
+```bash
+npm install
+npm run dev      # servidor de desarrollo
+npm run build    # sitemap + typecheck + build de producción
+npm run e2e      # pruebas funcionales (carrito, buscador, menú, WhatsApp)
+npm run audit    # capturas de todas las páginas + auditoría (desktop y móvil)
+```
+
+---
+
+## Cómo se cargan los datos
+
+Todo el contenido comercial vive en **`src/data/`**. Nada está escrito a mano
+dentro de los componentes.
+
+| Archivo | Qué contiene |
+| --- | --- |
+| `site.ts` | Marca, WhatsApp, Instagram, ubicación, dominio, moneda, IDs de analítica |
+| `catalog.ts` | Categorías y productos (la fuente de verdad del catálogo) |
+| `types.ts` | Forma de un producto: precio, stock, variantes, colores, reseñas… |
+| `images.json` | Generado: qué anchos existen de cada imagen (para el `srcset`) |
+
+### Regla del catálogo: nada inventado
+
+Cada ficha se escribió **sólo con lo que se lee o se ve en la foto oficial** del
+producto. Los campos sin confirmar quedan en `null` y **la interfaz los oculta
+sola**:
+
+| Campo en `null` | Qué hace la web |
+| --- | --- |
+| `price` | Muestra «Precio por WhatsApp» y el CTA pasa a ser WhatsApp |
+| `priceBefore` | No hay badge de descuento |
+| `brand` | La tarjeta muestra «DYNASTIC» |
+| `reference` | No se muestra la referencia |
+| `stock` | No aparece el filtro de disponibilidad |
+| `rating` / `reviews` | No aparecen estrellas |
+| `colors` / `variants` (vacíos) | No aparecen esos selectores |
+
+### Publicar precios
+
+Basta con rellenar `price` (y `priceBefore` si hay descuento) en `catalog.ts`.
+Se activan **solos**: el botón «Comprar», el carrito con subtotal, el filtro de
+precio del catálogo, el badge `-XX%`, la sección **Ofertas** con
+ANTES / AHORA / -XX%, y el `price` del Schema.org de la ficha.
+
+```ts
+{
+  slug: 'parlante-havit-rgb',
+  price: 189000,        // COP
+  priceBefore: 239000,  // opcional
+  stock: 4,             // opcional
+}
+```
+
+### Añadir un producto
+
+1. Deja la foto en `C:/Users/Lenovo/Desktop/DYNASTIC/` (o donde apunte
+   `SRC_RAW` en los scripts).
+2. Si la foto trae el **damero pintado** de las webs de stock, recórtala:
+   `npm run assets:cut` (detecta el damero y lo convierte en transparencia real).
+3. Registra el slug en `scripts/build-assets.mjs` y ejecuta `npm run assets:build`
+   (genera WebP a 320/640/960 px y actualiza `images.json`).
+4. Añade la ficha en `catalog.ts` con `image: '<slug>'`.
+
+---
+
+## Arquitectura
+
+```
+src/
+  data/        catálogo, marca, tipos, manifiesto de imágenes
+  lib/         WhatsApp, formato de precios, srcset, hooks (tilt, reveal, parallax)
+  store/       carrito (localStorage con guardia de hidratación) y estado de paneles
+  components/  header, footer, carrito, buscador, menú, tarjeta, SEO, iconos
+  sections/    bloques de la home: hero, categorías, destacados, ofertas…
+  pages/       rutas
+scripts/       utilidades de imagen, sitemap, auditoría y pruebas
+```
+
+### Rutas
+
+`/` · `/productos` · `/producto/:slug` · `/categorias` · `/categoria/:slug` ·
+`/ofertas` · `/nosotros` · `/ayuda` · `/contacto` · 404
+
+### WhatsApp
+
+Todos los enlaces se arman en `src/lib/whatsapp.ts` con el mensaje ya escrito
+(producto, cantidad, precio si existe, o el pedido completo del carrito).
+Cambiar el número en `site.ts` los actualiza todos.
+
+---
+
+## Preparado para crecer
+
+Ya está la estructura, sin implementar todavía:
+
+- **Pagos en línea** — el carrito calcula subtotal y hoy cierra por WhatsApp;
+  `CartDrawer` es el único punto a cambiar.
+- **Inventario / stock** — el campo existe y activa el filtro de disponibilidad
+  y el estado «Agotado».
+- **Variantes y colores** — tipados en `types.ts` y ya renderizados si se llenan.
+- **Reseñas** — `rating` / `reviews` en la ficha y en el Schema.org.
+- **Analítica (Meta Pixel, GA4)** — `analytics` en `site.ts`, sin IDs todavía.
+- **Nuevas categorías** — se agregan en `categories`; el menú, el buscador,
+  los filtros y el sitemap las recogen solas.
+
+---
+
+## SEO
+
+Título, descripción, canónica, Open Graph, Twitter Card y JSON-LD por página
+(`src/components/Seo.tsx`): `Organization` y `WebSite` en la home, `Product` con
+`Offer` en cada ficha y `FAQPage` en ayuda. `sitemap.xml` se regenera en cada
+build desde el catálogo.
+
+## Despliegue
+
+Vercel, con `vercel.json` ya configurado (reescritura SPA + caché inmutable de
+`/assets` y `/img`). Antes de publicar, ajusta `site.url` en `src/data/site.ts`
+al dominio real: de ahí salen la canónica, el Open Graph y el sitemap.
+
+---
+
+## Notas de las imágenes
+
+Las fotos originales llegaron con el **damero de transparencia pintado en los
+píxeles** (no tenían canal alfa). `scripts/cutout.mjs` lo detecta midiendo, en
+una ventana alrededor de cada píxel, si conviven los dos tonos del damero; así
+distingue el fondo de los cuerpos blancos de la cámara y el cargador, que un
+recorte por color se comía. `scripts/clean.mjs` elimina después los fragmentos
+sueltos. Los recortes resultantes se sirven en WebP con alfa real.
