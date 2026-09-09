@@ -20,7 +20,7 @@ export default function Spotlight() {
   if (!p) return null;
 
   return (
-    <section className="relative isolate overflow-hidden border-t border-hair bg-ink py-20 sm:py-28">
+    <section className="relative isolate overflow-hidden border-t border-hair bg-ink py-14 sm:py-20">
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute left-1/2 top-1/2 h-[540px] w-[860px] max-w-[150vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/[0.17] blur-[130px]" />
         <div className="absolute inset-0 bg-grid [background-size:60px_60px] opacity-40 [mask-image:radial-gradient(ellipse_at_center,#000,transparent_70%)]" />
@@ -49,7 +49,9 @@ export default function Spotlight() {
               ))}
             </ul>
 
-            <p className="mt-7 font-display text-2xl font-bold text-white">{priceLabel(p.price)}</p>
+            <p className="mt-7 font-display text-2xl font-bold text-heading">
+              {priceLabel(p.price)}
+            </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               {typeof p.price === 'number' ? (
@@ -87,7 +89,7 @@ export default function Spotlight() {
 
             <Link
               to={`/producto/${p.slug}`}
-              className="mt-5 inline-flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-silver-400 transition-colors hover:text-white"
+              className="mt-5 inline-flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-silver-400 transition-colors hover:text-heading"
             >
               Ver ficha completa
               <IconArrow className="h-3.5 w-3.5" />
@@ -113,7 +115,7 @@ export default function Spotlight() {
                     name={p.image}
                     alt={p.name}
                     sizes="(min-width:1024px) 520px, 90vw"
-                    className="max-h-full w-auto max-w-full object-contain drop-shadow-[0_36px_44px_rgba(0,0,0,.9)]"
+                    className="max-h-full w-auto max-w-full object-contain [filter:drop-shadow(var(--sh-product))]"
                   />
                 </div>
                 <span

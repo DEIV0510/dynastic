@@ -1,4 +1,5 @@
 import Seo, { organizationLd } from '../components/Seo';
+import Surface from '../components/Surface';
 import { site } from '../data/site';
 import Hero from '../sections/Hero';
 import Categories from '../sections/Categories';
@@ -7,8 +8,11 @@ import Offers from '../sections/Offers';
 import Spotlight from '../sections/Spotlight';
 import Why from '../sections/Why';
 import Vision from '../sections/Vision';
-import FinalBanner from '../sections/FinalBanner';
 
+/**
+ * Ritmo de la página: oscuro para los momentos de impacto y claro para las
+ * zonas donde el visitante lee y elige. Cinco zonas, no una sola pared negra.
+ */
 export default function Home() {
   return (
     <>
@@ -32,14 +36,27 @@ export default function Home() {
           },
         ]}
       />
+
+      {/* 1 — impacto */}
       <Hero />
-      <Categories />
-      <Featured />
-      <Offers />
+
+      {/* 2 — explorar y elegir */}
+      <Surface tone="light">
+        <Categories />
+        <Featured />
+      </Surface>
+
+      {/* 3 — el producto, en grande */}
       <Spotlight />
-      <Why />
+
+      {/* 4 — precio y confianza */}
+      <Surface tone="light">
+        <Offers />
+        <Why />
+      </Surface>
+
+      {/* 5 — marca y cierre en un solo bloque */}
       <Vision />
-      <FinalBanner />
     </>
   );
 }

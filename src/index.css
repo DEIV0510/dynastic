@@ -3,9 +3,81 @@
 @tailwind utilities;
 
 @layer base {
+  /* ── Superficies ──────────────────────────────────────────────────────────
+     La página alterna zonas oscuras (impacto: hero, producto destacado, cierre)
+     y zonas claras (lectura y compra: categorías, catálogo, ofertas).
+     Marcar una sección con data-surface="light" redefine estos tokens y todo
+     lo que hay dentro —tarjetas, textos, bordes, sombras— se adapta solo.     */
   :root {
     color-scheme: dark;
-    --plate: #05070c;
+
+    --c-void: #04060b;
+    --c-ink: #080b12;
+    --c-surface: #0b1019;
+    --c-raised: #111827;
+    --c-plate: #05070c;
+
+    --c-heading: #ffffff;
+    --c-s100: #f2f6fb;
+    --c-s200: #d7dee8;
+    --c-s300: #aeb9c8;
+    --c-s400: #8593a6;
+    --c-s500: #5f6c7e;
+    --c-s600: #3c4655;
+
+    --c-hair: rgba(255, 255, 255, 0.08);
+    --c-glass: rgba(255, 255, 255, 0.04);
+    --c-grid: rgba(255, 255, 255, 0.035);
+    --c-electric-300: #6fbbff;
+
+    --card-from: rgba(17, 24, 39, 0.9);
+    --card-to: rgba(6, 9, 15, 0.95);
+    --sh-plate: 0 24px 60px -30px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    --sh-product: 0 24px 28px rgba(0, 0, 0, 0.75);
+    --sheen: linear-gradient(
+      105deg,
+      #f2f6fb 0%,
+      #aeb9c8 38%,
+      #ffffff 52%,
+      #8593a6 68%,
+      #e6ecf4 100%
+    );
+  }
+
+  [data-surface='light'] {
+    color-scheme: light;
+
+    --c-void: #eef2f8;
+    --c-ink: #e5ebf4;
+    --c-surface: #ffffff;
+    --c-raised: #ffffff;
+    --c-plate: #ffffff;
+
+    --c-heading: #060b16;
+    --c-s100: #0b1220;
+    --c-s200: #1d2839;
+    --c-s300: #3a475d;
+    --c-s400: #56647b;
+    --c-s500: #6f7d94;
+    --c-s600: #9aa6b8;
+
+    --c-hair: rgba(9, 16, 32, 0.1);
+    --c-glass: rgba(9, 16, 32, 0.035);
+    --c-grid: rgba(9, 16, 32, 0.045);
+    --c-electric-300: #0060d6;
+
+    --card-from: #ffffff;
+    --card-to: #f6f9fd;
+    --sh-plate: 0 20px 46px -28px rgba(9, 16, 32, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    --sh-product: 0 18px 24px rgba(9, 16, 32, 0.18);
+    --sheen: linear-gradient(
+      105deg,
+      #0b1220 0%,
+      #4b5a72 40%,
+      #0b1220 55%,
+      #55647d 72%,
+      #0b1220 100%
+    );
   }
   html {
     scroll-behavior: smooth;
@@ -23,7 +95,7 @@
   h2,
   h3,
   h4 {
-    @apply font-display text-white;
+    @apply font-display text-heading;
     text-wrap: balance;
   }
   p {
@@ -34,9 +106,9 @@
     outline-offset: 3px;
     border-radius: 4px;
   }
-  /* Firefox / WebKit scrollbar, dark */
+  /* Firefox / WebKit scrollbar */
   * {
-    scrollbar-color: #263041 transparent;
+    scrollbar-color: var(--c-s600) transparent;
     scrollbar-width: thin;
   }
   ::-webkit-scrollbar {
@@ -60,18 +132,11 @@
   }
 
   .h-display {
-    @apply font-display font-extrabold uppercase leading-[0.94] tracking-[-0.02em] text-white;
+    @apply font-display font-extrabold uppercase leading-[0.94] tracking-[-0.02em] text-heading;
   }
 
   .text-silver-sheen {
-    background: linear-gradient(
-      105deg,
-      #f2f6fb 0%,
-      #aeb9c8 38%,
-      #ffffff 52%,
-      #8593a6 68%,
-      #e6ecf4 100%
-    );
+    background: var(--sheen);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -107,8 +172,8 @@
 
   .btn-ghost {
     @apply btn text-silver-100;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: var(--c-glass);
+    border: 1px solid var(--c-hair);
     backdrop-filter: blur(8px);
   }
   .btn-ghost:hover {
@@ -131,18 +196,18 @@
   /* --- surfaces --- */
   .card {
     @apply relative overflow-hidden rounded-2xl border border-hair;
-    background: linear-gradient(180deg, rgba(17, 24, 39, 0.9) 0%, rgba(6, 9, 15, 0.95) 100%);
+    background: linear-gradient(180deg, var(--card-from) 0%, var(--card-to) 100%);
   }
   .plate {
-    /* flat, opaque product bed — product cut-outs are flattened onto this exact colour */
-    background: var(--plate);
+    /* lecho de producto plano y opaco: cambia con la superficie */
+    background: var(--c-plate);
   }
   .hairline {
     @apply border-t border-hair;
   }
 
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-hair bg-white/[0.03]
+    @apply inline-flex items-center gap-1.5 rounded-full border border-hair bg-glass
            px-3.5 py-2 text-[11px] font-medium tracking-wide text-silver-300;
   }
 }
@@ -291,7 +356,7 @@ body[data-mobilebar='1'] .wa-fab {
 
 @layer components {
   .input {
-    @apply h-12 w-full rounded-xl border border-hair bg-black/40 px-4 text-[14px] text-white
+    @apply h-12 w-full rounded-xl border border-hair bg-glass px-4 text-[14px] text-heading
            placeholder:text-silver-600 transition-colors focus:border-electric/60 focus:outline-none;
   }
   textarea.input {
@@ -301,7 +366,7 @@ body[data-mobilebar='1'] .wa-fab {
     @apply appearance-none bg-[url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27%238593A6%27%20stroke-width%3D%271.7%27%3E%3Cpath%20d%3D%27m6%209%206%206%206-6%27/%3E%3C/svg%3E")] bg-[length:18px_18px] bg-[right_1rem_center] bg-no-repeat pr-11;
   }
   select.input option {
-    background-color: #0b1019;
+    background-color: var(--c-surface);
   }
 }
 

@@ -79,7 +79,7 @@ export default function Preloader() {
 
         <div className="relative mt-6 overflow-hidden">
           <p
-            className="font-display text-[26px] font-extrabold uppercase tracking-[0.22em] text-white sm:text-[32px]"
+            className="font-display text-[26px] font-extrabold uppercase tracking-[0.22em] text-heading sm:text-[32px]"
             style={{ animation: 'pl-word 520ms cubic-bezier(.2,.8,.2,1) 300ms both' }}
           >
             {site.name}

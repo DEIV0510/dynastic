@@ -95,12 +95,12 @@ export default function SearchOverlay() {
                   type="search"
                   placeholder="Busca tecnología, gadgets, accesorios..."
                   aria-label="Buscar productos"
-                  className="h-16 w-full bg-transparent text-[15px] text-white placeholder:text-silver-500 focus:outline-none"
+                  className="h-16 w-full bg-transparent text-[15px] text-heading placeholder:text-silver-500 focus:outline-none"
                 />
                 <button
                   onClick={dismiss}
                   aria-label="Cerrar buscador"
-                  className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-silver-400 hover:bg-white/5 hover:text-white"
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-full text-silver-400 hover:bg-glass hover:text-heading"
                 >
                   <IconClose className="h-4 w-4" />
                 </button>
@@ -116,7 +116,7 @@ export default function SearchOverlay() {
                           key={c.slug}
                           to={`/categoria/${c.slug}`}
                           onClick={dismiss}
-                          className="chip hover:border-electric/50 hover:text-white"
+                          className="chip hover:border-electric/50 hover:text-heading"
                         >
                           {c.name}
                         </Link>
@@ -126,7 +126,7 @@ export default function SearchOverlay() {
                 ) : results.length === 0 ? (
                   <div className="rounded-2xl border border-hair bg-surface/90 p-6 text-center">
                     <p className="text-sm text-silver-300">
-                      No encontramos <span className="text-white">“{q}”</span> en el catálogo.
+                      No encontramos <span className="text-heading">“{q}”</span> en el catálogo.
                     </p>
                     <p className="mt-1 text-[13px] text-silver-500">
                       Escríbenos por WhatsApp y lo conseguimos.
@@ -150,7 +150,7 @@ export default function SearchOverlay() {
                             />
                           </span>
                           <span className="min-w-0 flex-1">
-                            <span className="block truncate font-display text-sm font-semibold text-white">
+                            <span className="block truncate font-display text-sm font-semibold text-heading">
                               {p.name}
                             </span>
                             <span className="mt-0.5 block text-[12px] text-silver-500">

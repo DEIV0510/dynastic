@@ -22,14 +22,14 @@ export default function PageHeader({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative isolate overflow-hidden border-b border-hair pb-12 pt-28 sm:pb-16 sm:pt-36">
+    <section className="relative isolate overflow-hidden border-b border-hair pb-10 pt-32 sm:pb-12 sm:pt-40">
       <GlowBackdrop className="-z-10" />
       <div className="container-x">
         {crumbs.length > 0 && (
           <nav aria-label="Miga de pan" className="mb-6">
             <ol className="flex flex-wrap items-center gap-1.5 text-[12px] text-silver-500">
               <li>
-                <Link to="/" className="transition-colors hover:text-white">
+                <Link to="/" className="transition-colors hover:text-heading">
                   Inicio
                 </Link>
               </li>
@@ -37,7 +37,7 @@ export default function PageHeader({
                 <li key={c.label} className="flex items-center gap-1.5">
                   <IconChevron className="h-3 w-3 text-silver-600" aria-hidden />
                   {c.to ? (
-                    <Link to={c.to} className="transition-colors hover:text-white">
+                    <Link to={c.to} className="transition-colors hover:text-heading">
                       {c.label}
                     </Link>
                   ) : (

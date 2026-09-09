@@ -1,4 +1,5 @@
 import Seo from '../components/Seo';
+import Surface from '../components/Surface';
 import PageHeader from '../components/PageHeader';
 import Offers from '../sections/Offers';
 import FinalBanner from '../sections/FinalBanner';
@@ -22,7 +23,9 @@ export default function OffersPage() {
         lead="Aquí publicamos las promociones vigentes. Si buscas algo puntual, escríbenos y te cotizamos."
         crumbs={[{ label: 'Ofertas' }]}
       />
-      <Offers standalone />
+      <Surface tone="light">
+        <Offers standalone />
+      </Surface>
       <FinalBanner />
     </>
   );

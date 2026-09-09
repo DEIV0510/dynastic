@@ -72,6 +72,28 @@ ANTES / AHORA / -XX%, y el `price` del Schema.org de la ficha.
 
 ---
 
+## Superficies claras y oscuras
+
+La página **alterna zonas**, no es una sola pared negra: oscuro para los momentos
+de impacto (hero, producto destacado, cierre) y claro para las zonas donde el
+visitante lee y elige (categorías, catálogo, ofertas, ficha de producto).
+
+El color no está escrito en los componentes: son **tokens CSS** (`src/index.css`)
+que `tailwind.config.js` expone como `bg-void`, `text-heading`, `border-hair`,
+`text-silver-*`… Envolver un bloque en `<Surface tone="light">` redefine esos
+tokens y todo lo que hay dentro —tarjetas, textos, bordes, sombras, el lecho de
+los productos— se adapta solo.
+
+```tsx
+<Surface tone="light">
+  <Categories />
+  <Featured />
+</Surface>
+```
+
+El azul de marca y los botones sólidos (primario, WhatsApp) son fijos en las dos
+superficies. Los paneles (carrito, buscador, menú) son siempre oscuros.
+
 ## Arquitectura
 
 ```

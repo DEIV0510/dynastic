@@ -5,6 +5,7 @@ import { ProductImage, Reveal, SectionHead } from '../components/Primitives';
 import { IconArrow } from '../components/Icons';
 import type { Category } from '../data/types';
 
+/** Ficha compacta: las 11 categorías caben en dos filas en escritorio. */
 function CategoryCard({ c, delay }: { c: Category; delay: number }) {
   const tilt = useTilt(8);
   const count = countByCategory(c.slug);
@@ -23,30 +24,26 @@ function CategoryCard({ c, delay }: { c: Category; delay: number }) {
           <div className="plate relative overflow-hidden">
             <div
               aria-hidden
-              className="absolute inset-x-4 bottom-0 top-6 rounded-full bg-electric/[0.16] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+              className="absolute inset-x-3 bottom-0 top-4 rounded-full bg-electric/[0.16] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
             />
-            <div className="relative flex aspect-[4/3] items-center justify-center p-5">
+            <div className="relative flex aspect-square items-center justify-center p-3.5 sm:p-4">
               <ProductImage
                 name={c.cover}
                 alt=""
-                sizes="(min-width:1024px) 240px, (min-width:640px) 30vw, 44vw"
-                className="max-h-full w-auto max-w-full object-contain drop-shadow-[0_18px_24px_rgba(0,0,0,.8)] transition-transform duration-500 group-hover:scale-[1.07]"
+                sizes="(min-width:1280px) 190px, (min-width:1024px) 16vw, (min-width:640px) 22vw, 30vw"
+                className="max-h-full w-auto max-w-full object-contain [filter:drop-shadow(var(--sh-product))] transition-transform duration-500 group-hover:scale-[1.07]"
               />
             </div>
           </div>
 
-          <div className="flex flex-1 flex-col gap-1 border-t border-hair p-4">
-            <div className="flex items-baseline justify-between gap-2">
-              <h3 className="font-display text-[14px] font-bold uppercase tracking-wide text-white">
-                {c.name}
-              </h3>
-              <span className="text-[11px] tabular-nums text-silver-600">{count}</span>
-            </div>
-            <p className="text-[12px] leading-snug text-silver-500">{c.blurb}</p>
-            <span className="mt-2 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-electric-300">
-              Descubrir
-              <IconArrow className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+          <div className="flex items-center gap-2 border-t border-hair px-2.5 py-2.5 sm:px-3">
+            <h3 className="min-w-0 flex-1 hyphens-auto break-words font-display text-[10px] font-bold uppercase leading-tight tracking-tight text-heading sm:text-[13px] sm:tracking-wide">
+              {c.name}
+            </h3>
+            <span className="hidden shrink-0 text-[11px] tabular-nums text-silver-600 sm:inline">
+              {count}
             </span>
+            <IconArrow className="hidden h-3.5 w-3.5 shrink-0 text-electric-300 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 sm:block" />
           </div>
         </div>
       </Link>
@@ -56,7 +53,7 @@ function CategoryCard({ c, delay }: { c: Category; delay: number }) {
 
 export default function Categories() {
   return (
-    <section id="categorias" className="relative py-20 sm:py-28">
+    <section id="categorias" className="relative py-14 sm:py-20">
       <div className="container-x">
         <SectionHead
           eyebrow="Explora DYNASTIC"
@@ -69,9 +66,9 @@ export default function Categories() {
           to="/categorias"
           toLabel="Todas las categorías"
         />
-        <ul className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
+        <ul className="grid grid-cols-3 gap-2.5 sm:grid-cols-4 sm:gap-3.5 lg:grid-cols-6">
           {categories.map((c, i) => (
-            <CategoryCard key={c.slug} c={c} delay={i * 45} />
+            <CategoryCard key={c.slug} c={c} delay={i * 35} />
           ))}
         </ul>
       </div>

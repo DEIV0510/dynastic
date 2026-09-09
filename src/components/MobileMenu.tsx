@@ -45,7 +45,7 @@ export default function MobileMenu() {
               <button
                 onClick={close}
                 aria-label="Cerrar menú"
-                className="grid h-10 w-10 place-items-center rounded-full text-silver-300 hover:bg-white/5 hover:text-white"
+                className="grid h-10 w-10 place-items-center rounded-full text-silver-300 hover:bg-glass hover:text-heading"
               >
                 <IconClose />
               </button>
@@ -63,7 +63,7 @@ export default function MobileMenu() {
                     <Link
                       to={n.to}
                       onClick={close}
-                      className="block rounded-xl px-3 py-3 font-display text-lg font-semibold uppercase tracking-wide text-white transition-colors hover:bg-white/5"
+                      className="block rounded-xl px-3 py-3 font-display text-lg font-semibold uppercase tracking-wide text-heading transition-colors hover:bg-glass"
                     >
                       {n.label}
                     </Link>
@@ -78,7 +78,7 @@ export default function MobileMenu() {
                     <Link
                       to={`/categoria/${c.slug}`}
                       onClick={close}
-                      className="block rounded-lg border border-hair bg-white/[0.03] px-3 py-2.5 text-[13px] text-silver-300 transition-colors hover:border-electric/40 hover:text-white"
+                      className="block rounded-lg border border-hair bg-glass px-3 py-2.5 text-[13px] text-silver-300 transition-colors hover:border-electric/40 hover:text-heading"
                     >
                       {c.name}
                     </Link>
@@ -101,7 +101,7 @@ export default function MobileMenu() {
                 href={site.instagramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 text-[13px] text-silver-400 transition-colors hover:text-white"
+                className="flex items-center justify-center gap-2 text-[13px] text-silver-400 transition-colors hover:text-heading"
               >
                 <IconInstagram className="h-4 w-4" />@{site.instagram}
               </a>

@@ -56,7 +56,7 @@ export default function Footer() {
                   href={waGeneral()}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 text-silver-200 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-2.5 text-silver-200 transition-colors hover:text-heading"
                 >
                   <IconWhatsApp className="h-4 w-4 shrink-0 text-electric-300" />
                   {site.whatsappDisplay}
@@ -67,7 +67,7 @@ export default function Footer() {
                   href={site.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 text-silver-200 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-2.5 text-silver-200 transition-colors hover:text-heading"
                 >
                   <IconInstagram className="h-4 w-4 shrink-0 text-electric-300" />@{site.instagram}
                 </a>
@@ -84,7 +84,7 @@ export default function Footer() {
                     <li key={l.to + l.label}>
                       <Link
                         to={l.to}
-                        className="text-[14px] text-silver-400 transition-colors hover:text-white"
+                        className="text-[14px] text-silver-400 transition-colors hover:text-heading"
                       >
                         {l.label}
                       </Link>

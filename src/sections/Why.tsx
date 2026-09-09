@@ -26,7 +26,7 @@ const PILLARS = [
 
 export default function Why() {
   return (
-    <section className="relative border-t border-hair py-20 sm:py-28">
+    <section className="relative border-t border-hair py-14 sm:py-20">
       <div className="container-x">
         <SectionHead
           eyebrow="¿Por qué DYNASTIC?"
@@ -49,7 +49,7 @@ export default function Why() {
                     className="absolute inset-0 -z-10 rounded-xl bg-electric/25 opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-100"
                   />
                 </span>
-                <h3 className="mt-5 font-display text-[15px] font-bold uppercase tracking-wide text-white">
+                <h3 className="mt-5 font-display text-[15px] font-bold uppercase tracking-wide text-heading">
                   {p.title}
                 </h3>
                 <p className="mt-2.5 text-[14px] leading-relaxed text-silver-400">{p.text}</p>

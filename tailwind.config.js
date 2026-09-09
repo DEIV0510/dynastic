@@ -4,25 +4,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        void: '#04060B',
-        ink: '#080B12',
-        surface: '#0B1019',
-        raised: '#111827',
-        hair: 'rgba(255,255,255,0.08)',
+        /* Estos tokens cambian de valor según la superficie: una sección con
+           data-surface="light" redefine las variables y todo el contenido que
+           hay dentro se adapta sin tocar una sola clase. Ver src/index.css. */
+        void: 'var(--c-void)',
+        ink: 'var(--c-ink)',
+        surface: 'var(--c-surface)',
+        raised: 'var(--c-raised)',
+        hair: 'var(--c-hair)',
+        glass: 'var(--c-glass)',
+        heading: 'var(--c-heading)',
+        silver: {
+          100: 'var(--c-s100)',
+          200: 'var(--c-s200)',
+          300: 'var(--c-s300)',
+          400: 'var(--c-s400)',
+          500: 'var(--c-s500)',
+          600: 'var(--c-s600)',
+        },
+        /* El azul de marca es fijo en las dos superficies. */
         electric: {
           DEFAULT: '#0B84FF',
           400: '#3AA0FF',
-          300: '#6FBBFF',
+          300: 'var(--c-electric-300)',
           600: '#0060D6',
           700: '#0045A0',
-        },
-        silver: {
-          100: '#F2F6FB',
-          200: '#D7DEE8',
-          300: '#AEB9C8',
-          400: '#8593A6',
-          500: '#5F6C7E',
-          600: '#3C4655',
         },
       },
       fontFamily: {
@@ -32,12 +38,10 @@ export default {
       boxShadow: {
         glow: '0 0 0 1px rgba(11,132,255,.35), 0 12px 48px -12px rgba(11,132,255,.55)',
         'glow-sm': '0 0 24px -6px rgba(11,132,255,.6)',
-        plate: '0 24px 60px -30px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.06)',
+        plate: 'var(--sh-plate)',
       },
       backgroundImage: {
-        'silver-sheen': 'linear-gradient(105deg,#F2F6FB 0%,#AEB9C8 38%,#FFFFFF 52%,#8593A6 68%,#E6ECF4 100%)',
-        'electric-sheen': 'linear-gradient(105deg,#6FBBFF 0%,#0B84FF 45%,#9BD2FF 55%,#0060D6 100%)',
-        grid: 'linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px)',
+        grid: 'linear-gradient(var(--c-grid) 1px,transparent 1px),linear-gradient(90deg,var(--c-grid) 1px,transparent 1px)',
       },
       keyframes: {
         float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },

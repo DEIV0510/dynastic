@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Seo from '../components/Seo';
+import Surface from '../components/Surface';
 import PageHeader from '../components/PageHeader';
 import { Reveal } from '../components/Primitives';
 import { site } from '../data/site';
@@ -86,9 +87,9 @@ function Accordion({ q, a }: { q: string; a: string }) {
       <button
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full items-center gap-4 p-5 text-left transition-colors hover:bg-white/[0.02]"
+        className="flex w-full items-center gap-4 p-5 text-left transition-colors hover:bg-glass"
       >
-        <span className="flex-1 font-display text-[15px] font-semibold text-white">{q}</span>
+        <span className="flex-1 font-display text-[15px] font-semibold text-heading">{q}</span>
         <IconChevron
           className={`h-4 w-4 shrink-0 text-electric-300 transition-transform duration-300 ${
             open ? 'rotate-90' : ''
@@ -138,36 +139,40 @@ export default function Help() {
         crumbs={[{ label: 'Ayuda' }]}
       />
 
-      <section className="py-12 sm:py-16">
-        <div className="container-x max-w-3xl">
-          {BLOCKS.map((b) => (
-            <div key={b.id} id={b.id} className="mb-14 scroll-mt-28">
-              <h2 className="h-display mb-6 text-[clamp(1.4rem,3.6vw,2rem)]">{b.title}</h2>
-              <div className="space-y-3">
-                {b.items.map((it, i) => (
-                  <Reveal key={it.q} delay={i * 45}>
-                    <Accordion q={it.q} a={it.a} />
-                  </Reveal>
-                ))}
+      <Surface tone="light">
+        <section className="py-10 sm:py-14">
+          <div className="container-x max-w-3xl">
+            {BLOCKS.map((b) => (
+              <div key={b.id} id={b.id} className="mb-10 scroll-mt-28">
+                <h2 className="h-display mb-6 text-[clamp(1.4rem,3.6vw,2rem)]">{b.title}</h2>
+                <div className="space-y-3">
+                  {b.items.map((it, i) => (
+                    <Reveal key={it.q} delay={i * 45}>
+                      <Accordion q={it.q} a={it.a} />
+                    </Reveal>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
 
-          <div className="card p-8 text-center">
-            <h2 className="font-display text-lg font-bold text-white">¿Sigue sin resolverse?</h2>
-            <p className="mt-2 text-[14px] text-silver-400">Te respondemos por WhatsApp.</p>
-            <a
-              href={waGeneral()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-wa btn-md mt-6"
-            >
-              <IconWhatsApp className="h-4 w-4" />
-              Escribir a {site.whatsappDisplay}
-            </a>
+            <div className="card p-8 text-center">
+              <h2 className="font-display text-lg font-bold text-heading">
+                ¿Sigue sin resolverse?
+              </h2>
+              <p className="mt-2 text-[14px] text-silver-400">Te respondemos por WhatsApp.</p>
+              <a
+                href={waGeneral()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-wa btn-md mt-6"
+              >
+                <IconWhatsApp className="h-4 w-4" />
+                Escribir a {site.whatsappDisplay}
+              </a>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </Surface>
     </>
   );
 }

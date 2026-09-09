@@ -51,7 +51,7 @@ export default function Header() {
               end={n.end}
               className={({ isActive }) =>
                 `relative rounded-full px-3.5 py-2 text-[13px] font-medium transition-colors duration-200 ${
-                  isActive ? 'text-white' : 'text-silver-400 hover:text-white'
+                  isActive ? 'text-heading' : 'text-silver-400 hover:text-heading'
                 }`
               }
             >
@@ -75,7 +75,7 @@ export default function Header() {
             type="button"
             onClick={() => open('search')}
             aria-label="Buscar productos"
-            className="grid h-10 w-10 place-items-center rounded-full text-silver-300 transition-colors hover:bg-white/5 hover:text-white"
+            className="grid h-10 w-10 place-items-center rounded-full text-silver-300 transition-colors hover:bg-glass hover:text-heading"
           >
             <IconSearch />
           </button>
@@ -84,7 +84,7 @@ export default function Header() {
             type="button"
             onClick={() => open('cart')}
             aria-label={`Abrir carrito${count ? ` (${count} productos)` : ''}`}
-            className="relative grid h-10 w-10 place-items-center rounded-full text-silver-300 transition-colors hover:bg-white/5 hover:text-white"
+            className="relative grid h-10 w-10 place-items-center rounded-full text-silver-300 transition-colors hover:bg-glass hover:text-heading"
           >
             <IconCart />
             {count > 0 && (
@@ -98,7 +98,7 @@ export default function Header() {
             type="button"
             onClick={() => open('menu')}
             aria-label="Abrir menú"
-            className="grid h-10 w-10 place-items-center rounded-full text-silver-200 transition-colors hover:bg-white/5 hover:text-white lg:hidden"
+            className="grid h-10 w-10 place-items-center rounded-full text-silver-200 transition-colors hover:bg-glass hover:text-heading lg:hidden"
           >
             <IconMenu />
           </button>

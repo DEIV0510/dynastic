@@ -3,10 +3,10 @@ import ProductCard from '../components/ProductCard';
 import { Reveal, SectionHead } from '../components/Primitives';
 
 export default function Featured() {
-  const items = featuredProducts().slice(0, 8);
+  const items = featuredProducts().slice(0, 4);
 
   return (
-    <section className="relative border-t border-hair py-20 sm:py-28">
+    <section className="relative border-t border-hair py-14 sm:py-20">
       <div className="container-x">
         <SectionHead
           eyebrow="Lo más buscado"

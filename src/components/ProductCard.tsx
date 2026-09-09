@@ -47,7 +47,7 @@ export default function ProductCard({
               alt={product.name}
               sizes={CARD_SIZES}
               priority={priority}
-              className="max-h-full w-auto max-w-full object-contain drop-shadow-[0_24px_28px_rgba(0,0,0,.75)] transition-transform duration-500 ease-out group-hover:scale-[1.045]"
+              className="max-h-full w-auto max-w-full object-contain [filter:drop-shadow(var(--sh-product))] transition-transform duration-500 ease-out group-hover:scale-[1.045]"
             />
           </div>
 
@@ -58,12 +58,12 @@ export default function ProductCard({
               </span>
             )}
             {product.badge && !offer && (
-              <span className="rounded-full border border-hair bg-black/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-silver-200 backdrop-blur">
+              <span className="rounded-full border border-hair bg-surface/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-silver-200 backdrop-blur">
                 {product.badge}
               </span>
             )}
             {sold && (
-              <span className="rounded-full bg-silver-600 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
+              <span className="rounded-full bg-silver-300 px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-void">
                 Agotado
               </span>
             )}
@@ -75,7 +75,7 @@ export default function ProductCard({
             <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-electric-300">
               {product.brand ?? 'DYNASTIC'}
             </p>
-            <h3 className="mt-1.5 font-display text-[15px] font-semibold leading-snug text-white">
+            <h3 className="mt-1.5 font-display text-[15px] font-semibold leading-snug text-heading">
               <Link
                 to={`/producto/${product.slug}`}
                 className="after:absolute after:inset-0 after:content-['']"
@@ -88,7 +88,7 @@ export default function ProductCard({
           <div className="mt-auto flex items-baseline gap-2">
             {typeof product.price === 'number' ? (
               <>
-                <span className="font-display text-lg font-bold text-white">
+                <span className="font-display text-lg font-bold text-heading">
                   {formatPrice(product.price)}
                 </span>
                 {offer && (

@@ -32,7 +32,7 @@ export default function FinalBanner() {
         <div className="animate-pulseGlow absolute left-1/2 top-1/2 h-[380px] w-[820px] max-w-[150vw] -translate-x-1/2 -translate-y-1/2 rounded-full bg-electric/[0.18] blur-[120px]" />
       </div>
 
-      <div className="container-x py-20 text-center sm:py-28">
+      <div className="container-x py-14 text-center sm:py-20">
         <Reveal>
           <h2 className="h-display mx-auto max-w-3xl text-[clamp(2rem,6.4vw,4rem)]">
             Tu próximo gadget <span className="text-silver-sheen">está aquí</span>

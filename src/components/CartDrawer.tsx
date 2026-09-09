@@ -45,14 +45,14 @@ export default function CartDrawer() {
             <header className="flex items-center justify-between border-b border-hair px-5 py-4">
               <div>
                 <p className="eyebrow">Tu carrito</p>
-                <h2 className="mt-1 font-display text-lg font-bold text-white">
+                <h2 className="mt-1 font-display text-lg font-bold text-heading">
                   {count} {count === 1 ? 'producto' : 'productos'}
                 </h2>
               </div>
               <button
                 onClick={close}
                 aria-label="Cerrar carrito"
-                className="grid h-10 w-10 place-items-center rounded-full text-silver-300 hover:bg-white/5 hover:text-white"
+                className="grid h-10 w-10 place-items-center rounded-full text-silver-300 hover:bg-glass hover:text-heading"
               >
                 <IconClose />
               </button>
@@ -60,7 +60,7 @@ export default function CartDrawer() {
 
             {items.length === 0 ? (
               <div className="flex flex-1 flex-col items-center justify-center gap-4 px-8 text-center">
-                <p className="font-display text-lg font-semibold text-white">
+                <p className="font-display text-lg font-semibold text-heading">
                   Tu carrito está vacío
                 </p>
                 <p className="text-sm text-silver-400">Descubre lo que tenemos para ti.</p>
@@ -93,7 +93,7 @@ export default function CartDrawer() {
                         <Link
                           to={`/producto/${item.slug}`}
                           onClick={close}
-                          className="block font-display text-[13px] font-semibold leading-snug text-white hover:text-electric-300"
+                          className="block font-display text-[13px] font-semibold leading-snug text-heading hover:text-electric-300"
                         >
                           {item.product.name}
                         </Link>
@@ -108,12 +108,12 @@ export default function CartDrawer() {
                             <button
                               onClick={() => setQty(item.slug, item.qty - 1, item.variant)}
                               aria-label={`Quitar una unidad de ${item.product.name}`}
-                              className="grid h-8 w-8 place-items-center rounded-full text-silver-300 hover:text-white"
+                              className="grid h-8 w-8 place-items-center rounded-full text-silver-300 hover:text-heading"
                             >
                               <IconMinus className="h-3.5 w-3.5" />
                             </button>
                             <span
-                              className="w-7 text-center text-[13px] font-semibold text-white"
+                              className="w-7 text-center text-[13px] font-semibold text-heading"
                               aria-live="polite"
                             >
                               {item.qty}
@@ -121,7 +121,7 @@ export default function CartDrawer() {
                             <button
                               onClick={() => setQty(item.slug, item.qty + 1, item.variant)}
                               aria-label={`Agregar una unidad de ${item.product.name}`}
-                              className="grid h-8 w-8 place-items-center rounded-full text-silver-300 hover:text-white"
+                              className="grid h-8 w-8 place-items-center rounded-full text-silver-300 hover:text-heading"
                             >
                               <IconPlus className="h-3.5 w-3.5" />
                             </button>
@@ -130,7 +130,7 @@ export default function CartDrawer() {
                           <button
                             onClick={() => remove(item.slug, item.variant)}
                             aria-label={`Eliminar ${item.product.name} del carrito`}
-                            className="ml-auto grid h-8 w-8 place-items-center rounded-full text-silver-500 transition-colors hover:bg-white/5 hover:text-white"
+                            className="ml-auto grid h-8 w-8 place-items-center rounded-full text-silver-500 transition-colors hover:bg-glass hover:text-heading"
                           >
                             <IconTrash className="h-4 w-4" />
                           </button>
@@ -145,7 +145,7 @@ export default function CartDrawer() {
                     <span className="text-[13px] uppercase tracking-[0.18em] text-silver-400">
                       Subtotal
                     </span>
-                    <span className="font-display text-xl font-bold text-white">
+                    <span className="font-display text-xl font-bold text-heading">
                       {subtotal !== null ? formatPrice(subtotal) : 'A cotizar'}
                     </span>
                   </div>

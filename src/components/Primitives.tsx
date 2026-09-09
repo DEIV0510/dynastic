@@ -111,7 +111,7 @@ export function SectionHead({
 }) {
   return (
     <div
-      className={`mb-10 flex flex-col gap-5 sm:mb-14 ${
+      className={`mb-8 flex flex-col gap-4 sm:mb-10 ${
         align === 'center'
           ? 'items-center text-center'
           : 'sm:flex-row sm:items-end sm:justify-between'

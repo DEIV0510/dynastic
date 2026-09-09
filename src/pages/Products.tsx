@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Seo from '../components/Seo';
+import Surface from '../components/Surface';
 import PageHeader from '../components/PageHeader';
 import ProductCard from '../components/ProductCard';
 import { Reveal } from '../components/Primitives';
@@ -86,107 +87,109 @@ export default function Products() {
             type="search"
             placeholder="Busca tecnología, gadgets, accesorios..."
             aria-label="Buscar en el catálogo"
-            className="h-12 w-full bg-transparent text-[14px] text-white placeholder:text-silver-500 focus:outline-none"
+            className="h-12 w-full bg-transparent text-[14px] text-heading placeholder:text-silver-500 focus:outline-none"
           />
         </div>
       </PageHeader>
 
-      <section className="py-12 sm:py-16">
-        <div className="container-x">
-          {/* filtros */}
-          <div className="mb-8 space-y-4">
-            <Filter label="Categoría">
-              <Pill active={cat === 'all'} onClick={() => setCat('all')}>
-                Todas
-              </Pill>
-              {categories.map((c) => (
-                <Pill key={c.slug} active={cat === c.slug} onClick={() => setCat(c.slug)}>
-                  {c.name}
-                </Pill>
-              ))}
-            </Filter>
-
-            {brandList.length > 0 && (
-              <Filter label="Marca">
-                <Pill active={brand === 'all'} onClick={() => setBrand('all')}>
+      <Surface tone="light">
+        <section className="py-10 sm:py-14">
+          <div className="container-x">
+            {/* filtros */}
+            <div className="mb-8 space-y-4">
+              <Filter label="Categoría">
+                <Pill active={cat === 'all'} onClick={() => setCat('all')}>
                   Todas
                 </Pill>
-                {brandList.map((b) => (
-                  <Pill key={b} active={brand === b} onClick={() => setBrand(b)}>
-                    {b}
+                {categories.map((c) => (
+                  <Pill key={c.slug} active={cat === c.slug} onClick={() => setCat(c.slug)}>
+                    {c.name}
                   </Pill>
                 ))}
               </Filter>
-            )}
 
-            {/* Precio y disponibilidad aparecen en cuanto el catálogo tenga esos datos. */}
-            {hasPrices && (
-              <Filter label="Precio">
-                {PRICE_STEPS.map((s) => (
-                  <Pill key={s.id} active={price === s.id} onClick={() => setPrice(s.id)}>
-                    {s.label}
+              {brandList.length > 0 && (
+                <Filter label="Marca">
+                  <Pill active={brand === 'all'} onClick={() => setBrand('all')}>
+                    Todas
                   </Pill>
-                ))}
-              </Filter>
-            )}
-
-            {hasStock && (
-              <Filter label="Disponibilidad">
-                <Pill active={avail === 'all'} onClick={() => setAvail('all')}>
-                  Todos
-                </Pill>
-                <Pill active={avail === 'in'} onClick={() => setAvail('in')}>
-                  Disponible
-                </Pill>
-                <Pill active={avail === 'out'} onClick={() => setAvail('out')}>
-                  Agotado
-                </Pill>
-              </Filter>
-            )}
-
-            <div className="flex items-center justify-between gap-3 pt-1">
-              <p className="text-[13px] text-silver-500" aria-live="polite">
-                {results.length} {results.length === 1 ? 'producto' : 'productos'}
-              </p>
-              {active && (
-                <button
-                  onClick={reset}
-                  className="inline-flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-silver-400 transition-colors hover:text-white"
-                >
-                  <IconClose className="h-3.5 w-3.5" />
-                  Limpiar filtros
-                </button>
+                  {brandList.map((b) => (
+                    <Pill key={b} active={brand === b} onClick={() => setBrand(b)}>
+                      {b}
+                    </Pill>
+                  ))}
+                </Filter>
               )}
-            </div>
-          </div>
 
-          {results.length === 0 ? (
-            <div className="card mx-auto max-w-lg p-10 text-center">
-              <h2 className="font-display text-lg font-bold text-white">Nada por aquí</h2>
-              <p className="mt-2 text-[14px] text-silver-400">
-                No encontramos productos con esos filtros. Escríbenos y lo conseguimos.
-              </p>
-              <a
-                href={waGeneral()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-wa btn-md mt-6"
-              >
-                <IconWhatsApp className="h-4 w-4" />
-                Pedir por WhatsApp
-              </a>
+              {/* Precio y disponibilidad aparecen en cuanto el catálogo tenga esos datos. */}
+              {hasPrices && (
+                <Filter label="Precio">
+                  {PRICE_STEPS.map((s) => (
+                    <Pill key={s.id} active={price === s.id} onClick={() => setPrice(s.id)}>
+                      {s.label}
+                    </Pill>
+                  ))}
+                </Filter>
+              )}
+
+              {hasStock && (
+                <Filter label="Disponibilidad">
+                  <Pill active={avail === 'all'} onClick={() => setAvail('all')}>
+                    Todos
+                  </Pill>
+                  <Pill active={avail === 'in'} onClick={() => setAvail('in')}>
+                    Disponible
+                  </Pill>
+                  <Pill active={avail === 'out'} onClick={() => setAvail('out')}>
+                    Agotado
+                  </Pill>
+                </Filter>
+              )}
+
+              <div className="flex items-center justify-between gap-3 pt-1">
+                <p className="text-[13px] text-silver-500" aria-live="polite">
+                  {results.length} {results.length === 1 ? 'producto' : 'productos'}
+                </p>
+                {active && (
+                  <button
+                    onClick={reset}
+                    className="inline-flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-silver-400 transition-colors hover:text-heading"
+                  >
+                    <IconClose className="h-3.5 w-3.5" />
+                    Limpiar filtros
+                  </button>
+                )}
+              </div>
             </div>
-          ) : (
-            <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-              {results.map((p, i) => (
-                <Reveal as="li" key={p.slug} delay={Math.min(i, 8) * 45} className="h-full">
-                  <ProductCard product={p} priority={i < 4} />
-                </Reveal>
-              ))}
-            </ul>
-          )}
-        </div>
-      </section>
+
+            {results.length === 0 ? (
+              <div className="card mx-auto max-w-lg p-10 text-center">
+                <h2 className="font-display text-lg font-bold text-heading">Nada por aquí</h2>
+                <p className="mt-2 text-[14px] text-silver-400">
+                  No encontramos productos con esos filtros. Escríbenos y lo conseguimos.
+                </p>
+                <a
+                  href={waGeneral()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-wa btn-md mt-6"
+                >
+                  <IconWhatsApp className="h-4 w-4" />
+                  Pedir por WhatsApp
+                </a>
+              </div>
+            ) : (
+              <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+                {results.map((p, i) => (
+                  <Reveal as="li" key={p.slug} delay={Math.min(i, 8) * 45} className="h-full">
+                    <ProductCard product={p} priority={i < 4} />
+                  </Reveal>
+                ))}
+              </ul>
+            )}
+          </div>
+        </section>
+      </Surface>
     </>
   );
 }
@@ -220,8 +223,8 @@ function Pill({
       aria-pressed={active}
       className={`shrink-0 whitespace-nowrap rounded-full border px-3.5 py-2 text-[12px] font-medium transition-colors duration-200 ${
         active
-          ? 'border-electric/60 bg-electric/15 text-white'
-          : 'border-hair bg-white/[0.03] text-silver-400 hover:border-electric/40 hover:text-white'
+          ? 'border-electric/60 bg-electric/15 text-heading'
+          : 'border-hair bg-glass text-silver-400 hover:border-electric/40 hover:text-heading'
       }`}
     >
       {children}

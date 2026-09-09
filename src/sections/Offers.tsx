@@ -24,7 +24,7 @@ export default function Offers({ standalone = false }: { standalone?: boolean })
     return (
       <section
         id="ofertas"
-        className={`relative border-t border-hair ${standalone ? 'py-16' : 'py-20 sm:py-28'}`}
+        className={`relative border-t border-hair ${standalone ? 'py-16' : 'py-14 sm:py-20'}`}
       >
         <div className="container-x">
           <SectionHead
@@ -56,14 +56,14 @@ export default function Offers({ standalone = false }: { standalone?: boolean })
                     <span className="inline-block rounded-full bg-electric px-2 py-0.5 text-[10px] font-bold tracking-widest text-white">
                       -{discountPct(p)}%
                     </span>
-                    <h3 className="mt-2 font-display text-[14px] font-semibold leading-snug text-white">
+                    <h3 className="mt-2 font-display text-[14px] font-semibold leading-snug text-heading">
                       <Link to={`/producto/${p.slug}`}>{p.name}</Link>
                     </h3>
                     <p className="mt-1.5 text-[12px] text-silver-500">
                       Antes{' '}
                       <span className="line-through">{formatPrice(p.priceBefore as number)}</span>
                     </p>
-                    <p className="font-display text-lg font-bold text-white">
+                    <p className="font-display text-lg font-bold text-heading">
                       Ahora {formatPrice(p.price as number)}
                     </p>
                     <button
@@ -91,7 +91,7 @@ export default function Offers({ standalone = false }: { standalone?: boolean })
   return (
     <section
       id="ofertas"
-      className={`relative border-t border-hair ${standalone ? 'py-16' : 'py-20 sm:py-28'}`}
+      className={`relative border-t border-hair ${standalone ? 'py-16' : 'py-14 sm:py-20'}`}
     >
       <div className="container-x">
         <SectionHead
@@ -112,7 +112,7 @@ export default function Offers({ standalone = false }: { standalone?: boolean })
           <ul className="relative grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {strip.map((p, i) => (
               <Reveal as="li" key={p.slug} delay={i * 60}>
-                <div className="group flex h-full flex-col rounded-2xl border border-hair bg-black/30 transition-colors hover:border-electric/45">
+                <div className="group flex h-full flex-col rounded-2xl border border-hair bg-glass transition-colors hover:border-electric/45">
                   <Link
                     to={`/producto/${p.slug}`}
                     className="plate grid place-items-center overflow-hidden rounded-t-2xl p-4"
@@ -125,14 +125,14 @@ export default function Offers({ standalone = false }: { standalone?: boolean })
                     />
                   </Link>
                   <div className="flex flex-1 flex-col gap-2 p-3">
-                    <h3 className="font-display text-[13px] font-semibold leading-snug text-white">
+                    <h3 className="font-display text-[13px] font-semibold leading-snug text-heading">
                       <Link to={`/producto/${p.slug}`}>{p.name}</Link>
                     </h3>
                     <a
                       href={waProduct(p)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-electric-300 hover:text-white"
+                      className="mt-auto inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-electric-300 hover:text-heading"
                     >
                       Consultar precio
                       <IconArrow className="h-3.5 w-3.5" />

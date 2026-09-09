@@ -21,7 +21,7 @@ export default function MobileBar({ product, onBuy }: { product: Product; onBuy?
       <div className="flex items-center gap-2.5 px-4 py-3">
         <div className="min-w-0 flex-1">
           <p className="truncate text-[11px] text-silver-500">{product.name}</p>
-          <p className="truncate font-display text-[13px] font-bold text-white">
+          <p className="truncate font-display text-[13px] font-bold text-heading">
             {priceLabel(product.price)}
           </p>
         </div>
