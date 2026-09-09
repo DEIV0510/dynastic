@@ -28,16 +28,18 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[height,background-color,box-shadow,backdrop-filter] duration-300 ${
         scrolled
-          ? 'h-16 border-b border-hair bg-void/80 shadow-[0_10px_40px_-24px_rgba(11,132,255,.75)] backdrop-blur-xl'
-          : 'h-20 bg-gradient-to-b from-void/85 to-transparent backdrop-blur-[2px]'
+          ? 'h-[72px] border-b border-hair bg-void/80 shadow-[0_10px_40px_-24px_rgba(11,132,255,.75)] backdrop-blur-xl'
+          : 'h-[104px] bg-gradient-to-b from-void/85 to-transparent backdrop-blur-[2px]'
       }`}
     >
       <div className="container-x flex h-full items-center gap-4">
         <Link to="/" aria-label="DYNASTIC — Inicio" className="shrink-0">
           <Logo
             variant="full"
-            width={160}
-            className={`w-auto transition-[height] duration-300 ${scrolled ? 'h-6' : 'h-7 sm:h-8'}`}
+            width={260}
+            className={`w-auto drop-shadow-[0_0_18px_rgba(11,132,255,0.35)] transition-[height] duration-300 ${
+              scrolled ? 'h-9 sm:h-10' : 'h-12 sm:h-14'
+            }`}
           />
         </Link>
 

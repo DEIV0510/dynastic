@@ -41,7 +41,7 @@ export default function MobileMenu() {
             transition={{ type: 'tween', ease: [0.22, 1, 0.36, 1], duration: 0.34 }}
           >
             <div className="flex items-center justify-between border-b border-hair px-5 py-4">
-              <Logo variant="full" width={140} className="h-6 w-auto" />
+              <Logo variant="full" width={220} className="h-9 w-auto" />
               <button
                 onClick={close}
                 aria-label="Cerrar menú"

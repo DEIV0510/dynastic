@@ -41,7 +41,7 @@ export default function Footer() {
       <div className="container-x relative py-14 sm:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_2fr]">
           <div>
-            <Logo variant="full" width={200} className="h-9 w-auto" />
+            <Logo variant="full" width={300} className="h-12 w-auto sm:h-14" />
             <p className="mt-5 max-w-xs text-[14px] leading-relaxed text-silver-400">
               {site.description}
             </p>
