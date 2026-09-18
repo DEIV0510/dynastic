@@ -6,6 +6,7 @@ import { waProduct } from '../lib/whatsapp';
 import { useCart } from '../store/cart';
 import { useUi } from '../store/ui';
 import { useTilt } from '../lib/hooks';
+import { badgeFor } from '../lib/catalogRanking';
 import { ProductImage } from './Primitives';
 import { IconWhatsApp, IconCart } from './Icons';
 
@@ -24,6 +25,9 @@ export default function ProductCard({
   const { open } = useUi();
   const offer = isOnOffer(product);
   const sold = product.stock === 0;
+  const badge = badgeFor(product.slug);
+  // Las insignias de popularidad salen de ventas reales: se distinguen en azul.
+  const popular = badge?.kind === 'bestseller' || badge?.kind === 'trending';
 
   return (
     <article className="group relative h-full">
@@ -57,9 +61,15 @@ export default function ProductCard({
                 -{discountPct(product)}%
               </span>
             )}
-            {product.badge && !offer && (
-              <span className="rounded-full border border-hair bg-surface/80 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest text-silver-200 backdrop-blur">
-                {product.badge}
+            {badge && !offer && (
+              <span
+                className={`rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest backdrop-blur ${
+                  popular
+                    ? 'bg-electric text-white shadow-glow-sm'
+                    : 'border border-hair bg-surface/80 text-silver-200'
+                }`}
+              >
+                {badge.text}
               </span>
             )}
             {sold && (

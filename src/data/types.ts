@@ -46,14 +46,13 @@ export interface Product {
   features: string[];
   /** One commercial line. */
   tagline: string;
-  /** Editorial badge, optional. */
-  badge?: string;
   /** Colour options, empty until confirmed with the supplier. */
   colors: string[];
   variants: ProductVariant[];
   /** Average rating + count. `null` until real reviews exist. */
   rating: number | null;
   reviews: number | null;
+  /** Selección editorial: pesa en el orden «Relevancia» (ver src/lib/ranking.ts). */
   featured: boolean;
   /** Search helpers. */
   keywords: string[];

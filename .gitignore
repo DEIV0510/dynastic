@@ -35,3 +35,4 @@ scripts/t.mjs
 scripts/probe.mjs
 scripts/sample.mjs
 scripts/inspect.mjs
+scripts/_*.png

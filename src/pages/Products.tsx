@@ -10,6 +10,8 @@ import { normalize } from '../lib/format';
 import { site } from '../data/site';
 import { searchProducts } from '../components/SearchOverlay';
 import { waGeneral } from '../lib/whatsapp';
+import { isSortKey, ranked, sortOptions } from '../lib/catalogRanking';
+import type { SortKey } from '../lib/ranking';
 import { IconClose, IconSearch, IconWhatsApp } from '../components/Icons';
 
 type Availability = 'all' | 'in' | 'out';
@@ -28,6 +30,18 @@ const PRICE_STEPS = [
 export default function Products() {
   const [params, setParams] = useSearchParams();
   const q = params.get('q') ?? '';
+  // El orden vive en la URL (?orden=…) para que se pueda compartir el enlace.
+  const orden = params.get('orden');
+  const sort: SortKey = isSortKey(orden) ? orden : 'relevancia';
+  const sorts = sortOptions();
+
+  /** Cambia un parámetro de la URL sin perder los demás. */
+  const setParam = (key: string, value: string | null) => {
+    const next = new URLSearchParams(params);
+    if (value) next.set(key, value);
+    else next.delete(key);
+    setParams(next, { replace: true });
+  };
   const [cat, setCat] = useState<string>('all');
   const [brand, setBrand] = useState<string>('all');
   const [price, setPrice] = useState<string>('all');
@@ -48,10 +62,18 @@ export default function Products() {
     if (hasStock && avail !== 'all') {
       list = list.filter((p) => (avail === 'in' ? p.stock === null || p.stock > 0 : p.stock === 0));
     }
-    return list;
-  }, [q, cat, brand, price, avail, hasPrices, hasStock]);
+    // Buscando y en «Relevancia», manda la coincidencia de texto (searchProducts
+    // ya desempata por ranking). Cualquier otro orden lo elige el cliente.
+    return q.trim() && sort === 'relevancia' ? list : ranked(list, sort);
+  }, [q, sort, cat, brand, price, avail, hasPrices, hasStock]);
 
-  const active = cat !== 'all' || brand !== 'all' || price !== 'all' || avail !== 'all' || q !== '';
+  const active =
+    cat !== 'all' ||
+    brand !== 'all' ||
+    price !== 'all' ||
+    avail !== 'all' ||
+    q !== '' ||
+    sort !== 'relevancia';
 
   const reset = () => {
     setCat('all');
@@ -83,7 +105,7 @@ export default function Products() {
           <IconSearch className="h-5 w-5 shrink-0 text-electric-300" />
           <input
             value={q}
-            onChange={(e) => setParams(e.target.value ? { q: e.target.value } : {})}
+            onChange={(e) => setParam('q', e.target.value || null)}
             type="search"
             placeholder="Busca tecnología, gadgets, accesorios..."
             aria-label="Buscar en el catálogo"
@@ -146,10 +168,29 @@ export default function Products() {
                 </Filter>
               )}
 
-              <div className="flex items-center justify-between gap-3 pt-1">
-                <p className="text-[13px] text-silver-500" aria-live="polite">
-                  {results.length} {results.length === 1 ? 'producto' : 'productos'}
-                </p>
+              <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+                <div className="flex items-center gap-4">
+                  <p className="text-[13px] text-silver-500" aria-live="polite">
+                    {results.length} {results.length === 1 ? 'producto' : 'productos'}
+                  </p>
+                  <label className="flex items-center gap-2 text-[12px] text-silver-500">
+                    <span className="font-semibold uppercase tracking-[0.16em]">Ordenar</span>
+                    <select
+                      value={sort}
+                      onChange={(e) =>
+                        setParam('orden', e.target.value === 'relevancia' ? null : e.target.value)
+                      }
+                      className="input !h-10 w-auto !rounded-full !py-0 !pl-4 !text-[13px]"
+                      aria-label="Ordenar productos"
+                    >
+                      {sorts.map((o) => (
+                        <option key={o.value} value={o.value}>
+                          {o.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
                 {active && (
                   <button
                     onClick={reset}

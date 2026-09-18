@@ -7,6 +7,7 @@ import { ProductImage, Reveal, SectionHead } from '../components/Primitives';
 import { categories, categoryBySlug, countByCategory, productsByCategory } from '../data/catalog';
 import { site } from '../data/site';
 import { waCategory } from '../lib/whatsapp';
+import { ranked } from '../lib/catalogRanking';
 import { IconArrow, IconWhatsApp } from '../components/Icons';
 
 export function CategoryIndex() {
@@ -82,7 +83,7 @@ export default function CategoryPage() {
   const category = categoryBySlug(slug);
   if (!category) return <Navigate to="/categorias" replace />;
 
-  const items = productsByCategory(category.slug);
+  const items = ranked(productsByCategory(category.slug));
   const others = categories.filter((c) => c.slug !== category.slug);
 
   return (

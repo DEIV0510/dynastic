@@ -1,21 +1,33 @@
-import { featuredProducts } from '../data/catalog';
+import { salesDataLoaded, topProducts } from '../lib/catalogRanking';
 import ProductCard from '../components/ProductCard';
 import { Reveal, SectionHead } from '../components/Primitives';
 
 export default function Featured() {
-  const items = featuredProducts().slice(0, 4);
+  // Los 4 primeros del ranking. Con ventas cargadas son los más vendidos; sin
+  // ellas, la selección editorial. El texto dice cuál de los dos es.
+  const items = topProducts(4);
 
   return (
     <section className="relative border-t border-hair py-14 sm:py-20">
       <div className="container-x">
         <SectionHead
-          eyebrow="Lo más buscado"
+          eyebrow={salesDataLoaded ? 'Lo más vendido' : 'Selección DYNASTIC'}
           title={
-            <>
-              Los que todos <span className="text-silver-sheen">piden</span>
-            </>
+            salesDataLoaded ? (
+              <>
+                Los que todos <span className="text-silver-sheen">piden</span>
+              </>
+            ) : (
+              <>
+                Elegidos <span className="text-silver-sheen">para ti</span>
+              </>
+            )
           }
-          lead="Lo que más nos consultan por WhatsApp, en un solo lugar."
+          lead={
+            salesDataLoaded
+              ? 'Lo que más se vende en DYNASTIC, en un solo lugar.'
+              : 'Nuestros destacados del momento, en un solo lugar.'
+          }
           to="/productos"
         />
         <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">

@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useUi } from '../store/ui';
 import { useEscape, useLockBody } from '../lib/hooks';
-import { categories, products } from '../data/catalog';
+import { categories } from '../data/catalog';
 import { normalize, priceLabel } from '../lib/format';
+import { ranked } from '../lib/catalogRanking';
 import { ProductImage } from './Primitives';
 import { IconClose, IconSearch } from './Icons';
 
@@ -12,7 +13,9 @@ export function searchProducts(query: string) {
   const q = normalize(query).trim();
   if (!q) return [];
   const terms = q.split(/\s+/);
-  return products
+  // Se parte del catálogo ya ordenado: como el sort es estable, a igual
+  // coincidencia de texto queda primero el producto mejor posicionado.
+  return ranked()
     .map((p) => {
       const hay = normalize(
         [

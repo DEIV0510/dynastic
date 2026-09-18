@@ -6,13 +6,8 @@ import Surface from '../components/Surface';
 import ProductCard from '../components/ProductCard';
 import MobileBar from '../components/MobileBar';
 import { ProductImage, Reveal } from '../components/Primitives';
-import {
-  categoryBySlug,
-  discountPct,
-  isOnOffer,
-  productBySlug,
-  relatedProducts,
-} from '../data/catalog';
+import { categoryBySlug, discountPct, isOnOffer, productBySlug } from '../data/catalog';
+import { badgeFor, rankedRelated } from '../lib/catalogRanking';
 import { formatPrice, PRICE_ON_REQUEST } from '../lib/format';
 import { waBuy, waProduct } from '../lib/whatsapp';
 import { useCart } from '../store/cart';
@@ -47,6 +42,7 @@ export default function ProductDetail() {
   const gallery = [product.image, ...product.gallery];
   const current = gallery[Math.min(shot, gallery.length - 1)];
   const sold = product.stock === 0;
+  const badge = badgeFor(product.slug);
   const priced = typeof product.price === 'number';
 
   const addToCart = () => {
@@ -166,9 +162,9 @@ export default function ProductDetail() {
                   {product.reference && (
                     <span className="chip text-silver-400">Ref. {product.reference}</span>
                   )}
-                  {product.badge && (
+                  {badge && (
                     <span className="chip border-electric/40 bg-electric/10 text-electric-300">
-                      {product.badge}
+                      {badge.text}
                     </span>
                   )}
                   {sold && <span className="chip border-silver-600 text-silver-300">Agotado</span>}
@@ -347,7 +343,7 @@ export default function ProductDetail() {
                 </Link>
               </div>
               <ul className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
-                {relatedProducts(product).map((r, i) => (
+                {rankedRelated(product).map((r, i) => (
                   <Reveal as="li" key={r.slug} delay={i * 50} className="h-full">
                     <ProductCard product={r} />
                   </Reveal>

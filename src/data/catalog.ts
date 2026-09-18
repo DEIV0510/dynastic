@@ -10,6 +10,10 @@ import type { Category, Product } from './types';
  *
  * Para publicar precios: pon `price` (y `priceBefore` si hay descuento). La
  * tarjeta, el detalle, el carrito y la sección de Ofertas se activan solos.
+ *
+ * El ORDEN y las insignias («Más vendido», «Tendencia», «Nuevo») no se escriben
+ * aquí: salen de las ventas reales en merchandising.ts (ver src/lib/ranking.ts).
+ * `featured` sí vive aquí: es la selección editorial y pesa en el orden.
  */
 
 export const categories: Category[] = [
@@ -97,7 +101,6 @@ export const products: Product[] = [
       'Estuche de carga con indicador LED',
       'Uso independiente por audífono',
     ],
-    badge: 'Más buscado',
     colors: [],
     variants: [],
     rating: null,
@@ -150,7 +153,6 @@ export const products: Product[] = [
       'Corona giratoria y botón lateral',
       'Correa deportiva de silicona',
     ],
-    badge: 'Tendencia',
     colors: [],
     variants: [],
     rating: null,
@@ -203,7 +205,6 @@ export const products: Product[] = [
       'Controles de reproducción y luces en la parte superior',
       'Conexión Bluetooth',
     ],
-    badge: 'Favorito',
     colors: [],
     variants: [],
     rating: null,
@@ -282,7 +283,6 @@ export const products: Product[] = [
       'Rejillas de ventilación laterales',
       'Controles superiores integrados',
     ],
-    badge: 'Top ventas',
     colors: [],
     variants: [],
     rating: null,
@@ -377,7 +377,6 @@ export const products: Product[] = [
 export const productBySlug = (slug: string) => products.find((p) => p.slug === slug);
 export const categoryBySlug = (slug: string) => categories.find((c) => c.slug === slug);
 export const productsByCategory = (slug: string) => products.filter((p) => p.category === slug);
-export const featuredProducts = () => products.filter((p) => p.featured);
 
 /** Un producto está "en oferta" sólo cuando ambos precios son números reales. */
 export const isOnOffer = (p: Product) =>
@@ -387,12 +386,6 @@ export const offerProducts = () => products.filter(isOnOffer);
 
 export const discountPct = (p: Product) =>
   isOnOffer(p) ? Math.round((1 - (p.price as number) / (p.priceBefore as number)) * 100) : 0;
-
-export const relatedProducts = (p: Product, limit = 4) =>
-  [
-    ...products.filter((x) => x.slug !== p.slug && x.category === p.category),
-    ...products.filter((x) => x.slug !== p.slug && x.category !== p.category),
-  ].slice(0, limit);
 
 export const brands = () =>
   Array.from(new Set(products.map((p) => p.brand).filter(Boolean) as string[])).sort();

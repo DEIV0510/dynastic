@@ -56,6 +56,37 @@ const check = (name, ok, extra = '') => results.push(`${ok ? 'OK  ' : 'FALLA'} $
   const filtered = await page.locator('ul.grid > li').count();
   check('filtro por categoría reduce el listado', total === 11 && filtered === 1, `${total} → ${filtered}`);
 
+  // orden del catálogo
+  await page.goto(BASE + '/productos', { waitUntil: 'networkidle' });
+  await page.waitForTimeout(1200);
+  const names = () => page.locator('ul.grid > li h3').allTextContents();
+  const relevance = await names();
+  const featuredNames = await page.evaluate(async () => {
+    const { products } = await import('/src/data/catalog.ts');
+    return products.filter((p) => p.featured).map((p) => p.name);
+  });
+  check(
+    'relevancia: los destacados encabezan el catálogo',
+    relevance.slice(0, featuredNames.length).every((n) => featuredNames.includes(n.trim())),
+    relevance.slice(0, 3).join(' · '),
+  );
+  const options = await page.locator('select[aria-label="Ordenar productos"] option').allTextContents();
+  check(
+    'sólo se ofrecen órdenes con datos (sin ventas/precios no hay «Más vendidos» ni precio)',
+    !options.includes('Más vendidos') && !options.some((o) => o.startsWith('Precio')),
+    options.join(' | '),
+  );
+  await page.selectOption('select[aria-label="Ordenar productos"]', 'nombre');
+  await page.waitForTimeout(500);
+  const byName = (await names()).map((n) => n.trim());
+  const sortedCopy = [...byName].sort((a, b) => a.localeCompare(b, 'es'));
+  check('ordenar por nombre deja el listado alfabético', JSON.stringify(byName) === JSON.stringify(sortedCopy));
+  check('el orden queda en la URL para compartirlo', page.url().includes('orden=nombre'), page.url());
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForTimeout(1000);
+  const afterReload = (await names()).map((n) => n.trim());
+  check('recargar conserva el orden elegido', JSON.stringify(afterReload) === JSON.stringify(sortedCopy));
+
   await ctx.close();
 }
 

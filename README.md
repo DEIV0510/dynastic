@@ -10,7 +10,8 @@ por WhatsApp y preventa, construida para crecer hacia un e-commerce completo.
 npm install
 npm run dev      # servidor de desarrollo
 npm run build    # sitemap + typecheck + build de producción
-npm run e2e      # pruebas funcionales (carrito, buscador, menú, WhatsApp)
+npm test         # pruebas del algoritmo de ranking (también corren en cada build)
+npm run e2e      # pruebas funcionales (carrito, buscador, menú, orden, WhatsApp)
 npm run audit    # capturas de todas las páginas + auditoría (desktop y móvil)
 ```
 
@@ -69,6 +70,50 @@ ANTES / AHORA / -XX%, y el `price` del Schema.org de la ficha.
 3. Registra el slug en `scripts/build-assets.mjs` y ejecuta `npm run assets:build`
    (genera WebP a 320/640/960 px y actualiza `images.json`).
 4. Añade la ficha en `catalog.ts` con `image: '<slug>'`.
+
+---
+
+## Orden del catálogo (ranking)
+
+El catálogo se ordena como una plataforma: **primero lo destacado y lo más
+vendido**. Todo lo que muestra productos —catálogo, categorías, «Elegidos para
+ti» de la home, ofertas, relacionados y el buscador— usa el mismo criterio.
+
+**Cómo decide el orden «Relevancia»** (`src/lib/ranking.ts`):
+
+1. **Fijados a mano** (`pin`), en el número que les pongas.
+2. **Todo lo disponible**, por una puntuación de 0 a 1:
+
+   | Señal | Peso | De dónde sale |
+   | --- | --- | --- |
+   | Ventas totales | 30 % | `sold` (escala logarítmica: el líder no aplasta al resto) |
+   | Tendencia | 20 % | `sold30`, ventas de los últimos 30 días |
+   | Destacado | 20 % | `featured` en `catalog.ts` |
+   | Reseñas | 10 % | `rating`/`reviews` (promedio bayesiano) |
+   | Descuento | 8 % | `price` vs `priceBefore` |
+   | Novedad | 7 % | `addedAt`, decae en 45 días |
+   | Comprable ya | 5 % | tiene `price` |
+
+3. **Lo agotado**, siempre al final: nunca ocupa un primer puesto.
+
+A igual puntuación manda el orden en que aparecen en `catalog.ts`.
+
+**Cargar ventas** — en `src/data/merchandising.ts`, con números reales:
+
+```ts
+'parlante-havit-rgb': { sold: 42, sold30: 9 },
+'proyector-wanbo-fhd': { pin: 1 },            // siempre primero
+'smartwatch-deportivo': { addedAt: '2026-09-15', label: 'Recomendado' },
+```
+
+Con eso se activan solos: el orden por ventas, la opción **«Más vendidos»** del
+catálogo, las insignias **«Más vendido»** (top 3) y **«Tendencia»** (top 2 de
+los 30 días), y la home pasa a titular «Lo más vendido». **Mientras el archivo
+esté vacío no se muestra ninguna insignia de popularidad**: ordena la selección
+editorial. Los pesos se ajustan en el mismo archivo (`rankingWeights`).
+
+`npm test` comprueba el algoritmo con datos de ejemplo y valida los datos
+reales (slugs que existan, números enteros, `sold30 ≤ sold`, fechas válidas).
 
 ---
 

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { discountPct, offerProducts, products } from '../data/catalog';
+import { discountPct, offerProducts } from '../data/catalog';
+import { ranked, topProducts } from '../lib/catalogRanking';
 import { formatPrice } from '../lib/format';
 import { waProduct, waGeneral } from '../lib/whatsapp';
 import { useCart } from '../store/cart';
@@ -16,7 +17,8 @@ import { IconArrow, IconWhatsApp } from '../components/Icons';
  * precio directo, sin inventar cifras.
  */
 export default function Offers({ standalone = false }: { standalone?: boolean }) {
-  const deals = offerProducts();
+  // Mayor descuento primero; a igual descuento decide el ranking (sort estable).
+  const deals = ranked(offerProducts()).sort((a, b) => discountPct(b) - discountPct(a));
   const { add } = useCart();
   const { open } = useUi();
 
@@ -86,7 +88,7 @@ export default function Offers({ standalone = false }: { standalone?: boolean })
   }
 
   // Sin precios publicados todavía: franja de cotización directa.
-  const strip = products.filter((p) => p.featured).slice(0, 4);
+  const strip = topProducts(4);
 
   return (
     <section
