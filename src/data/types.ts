@@ -9,6 +9,7 @@ export type CategorySlug =
   | 'proyectores'
   | 'intercomunicadores'
   | 'camaras'
+  | 'tvbox'
   | 'gadgets';
 
 export interface Category {

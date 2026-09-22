@@ -8,6 +8,30 @@
     "w": 1272,
     "h": 1236
   },
+  "audifonos-tws-pro-g2": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 716,
+    "h": 712
+  },
+  "audifonos-tws-pro-g3": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 711,
+    "h": 715
+  },
+  "audifonos-tws-pro-g4": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 757,
+    "h": 751
+  },
   "diadema-soundcore": {
     "sizes": [
       320,
@@ -93,6 +117,382 @@
     ],
     "w": 674,
     "h": 1462
+  },
+  "audifonos-jkmx-tws": {
+    "sizes": [
+      320
+    ],
+    "w": 602,
+    "h": 757
+  },
+  "audifonos-jkmx-tws-g2": {
+    "sizes": [
+      320
+    ],
+    "w": 610,
+    "h": 747
+  },
+  "audifonos-jkmx-tws-g3": {
+    "sizes": [
+      320
+    ],
+    "w": 576,
+    "h": 755
+  },
+  "audifonos-jkmx-tws-g4": {
+    "sizes": [
+      320
+    ],
+    "w": 627,
+    "h": 602
+  },
+  "diadema-airmax-style": {
+    "sizes": [
+      320
+    ],
+    "w": 555,
+    "h": 746
+  },
+  "diadema-airmax-style-g2": {
+    "sizes": [
+      320
+    ],
+    "w": 517,
+    "h": 752
+  },
+  "smartwatch-hk11-promax": {
+    "sizes": [
+      320
+    ],
+    "w": 567,
+    "h": 752
+  },
+  "smartwatch-hk11-promax-g2": {
+    "sizes": [
+      320
+    ],
+    "w": 560,
+    "h": 751
+  },
+  "smartwatch-hk11-promax-g3": {
+    "sizes": [
+      320
+    ],
+    "w": 562,
+    "h": 752
+  },
+  "smartwatch-harvic-swc962": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 752,
+    "h": 761
+  },
+  "smartwatch-harvic-swc964": {
+    "sizes": [
+      320
+    ],
+    "w": 566,
+    "h": 752
+  },
+  "smartwatch-harvic-swc964-g2": {
+    "sizes": [
+      320
+    ],
+    "w": 561,
+    "h": 757
+  },
+  "smartwatch-harvic-swc964-g3": {
+    "sizes": [
+      320
+    ],
+    "w": 562,
+    "h": 750
+  },
+  "reloj-curren-clasico": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 762,
+    "h": 752
+  },
+  "reloj-curren-clasico-g2": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 752,
+    "h": 752
+  },
+  "reloj-curren-clasico-g3": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 756,
+    "h": 752
+  },
+  "reloj-curren-clasico-g4": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 755,
+    "h": 752
+  },
+  "reloj-curren-deportivo": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 755,
+    "h": 777
+  },
+  "reloj-curren-deportivo-g2": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 752,
+    "h": 757
+  },
+  "reloj-curren-automatico": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 756,
+    "h": 750
+  },
+  "reloj-curren-automatico-g2": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 750,
+    "h": 755
+  },
+  "reloj-sanda-digital": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 752,
+    "h": 755
+  },
+  "reloj-sanda-digital-g2": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 750,
+    "h": 687
+  },
+  "reloj-sanda-digital-g3": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 752,
+    "h": 757
+  },
+  "reloj-sanda-digital-g4": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 742,
+    "h": 742
+  },
+  "reloj-digital-retro": {
+    "sizes": [
+      320
+    ],
+    "w": 575,
+    "h": 752
+  },
+  "reloj-scottie": {
+    "sizes": [
+      320
+    ],
+    "w": 561,
+    "h": 752
+  },
+  "reloj-scottie-g2": {
+    "sizes": [
+      320
+    ],
+    "w": 562,
+    "h": 755
+  },
+  "reloj-scottie-g3": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 752,
+    "h": 762
+  },
+  "proyector-hy300-mini": {
+    "sizes": [
+      320
+    ],
+    "w": 565,
+    "h": 752
+  },
+  "proyector-hy300-mini-g2": {
+    "sizes": [
+      320
+    ],
+    "w": 565,
+    "h": 751
+  },
+  "proyector-hy300-mini-g3": {
+    "sizes": [
+      320
+    ],
+    "w": 511,
+    "h": 755
+  },
+  "intercom-sofistek-xz02": {
+    "sizes": [
+      320
+    ],
+    "w": 561,
+    "h": 747
+  },
+  "intercom-sofistek-xz02-g2": {
+    "sizes": [
+      320
+    ],
+    "w": 570,
+    "h": 750
+  },
+  "intercom-sofistek-xz02-g3": {
+    "sizes": [
+      320
+    ],
+    "w": 525,
+    "h": 745
+  },
+  "intercom-q58max": {
+    "sizes": [
+      320
+    ],
+    "w": 627,
+    "h": 752
+  },
+  "intercom-q58max-g2": {
+    "sizes": [
+      320
+    ],
+    "w": 605,
+    "h": 715
+  },
+  "intercom-q58max-g3": {
+    "sizes": [
+      320
+    ],
+    "w": 465,
+    "h": 540
+  },
+  "parlante-jbl-boombox3xl": {
+    "sizes": [
+      320
+    ],
+    "w": 537,
+    "h": 656
+  },
+  "parlante-jbl-boombox3xl-g2": {
+    "sizes": [
+      320
+    ],
+    "w": 537,
+    "h": 652
+  },
+  "parlante-jbl-boombox3xl-g3": {
+    "sizes": [
+      320
+    ],
+    "w": 537,
+    "h": 657
+  },
+  "parlante-jbl-boombox3xl-g4": {
+    "sizes": [
+      320
+    ],
+    "w": 540,
+    "h": 652
+  },
+  "parlante-jbl-boombox4": {
+    "sizes": [
+      320
+    ],
+    "w": 540,
+    "h": 652
+  },
+  "parlante-jbl-boombox4-g2": {
+    "sizes": [
+      320
+    ],
+    "w": 542,
+    "h": 662
+  },
+  "parlante-jbl-boombox4-g3": {
+    "sizes": [
+      320
+    ],
+    "w": 542,
+    "h": 652
+  },
+  "parlante-jbl-boombox4-g4": {
+    "sizes": [
+      320
+    ],
+    "w": 532,
+    "h": 640
+  },
+  "parlante-harvic-pr810": {
+    "sizes": [
+      320
+    ],
+    "w": 562,
+    "h": 747
+  },
+  "parlante-harvic-pr810-g2": {
+    "sizes": [
+      320,
+      640
+    ],
+    "w": 732,
+    "h": 751
+  },
+  "parlante-harvic-pr811": {
+    "sizes": [
+      320,
+      640,
+      960
+    ],
+    "w": 1002,
+    "h": 756
+  },
+  "parlante-harvic-pr831": {
+    "sizes": [
+      320,
+      640,
+      960
+    ],
+    "w": 1400,
+    "h": 752
+  },
+  "tvbox-onn-googletv": {
+    "sizes": [
+      320
+    ],
+    "w": 512,
+    "h": 592
   },
   "logo-full": {
     "sizes": [

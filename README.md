@@ -67,9 +67,19 @@ ANTES / AHORA / -XX%, y el `price` del Schema.org de la ficha.
    `SRC_RAW` en los scripts).
 2. Si la foto trae el **damero pintado** de las webs de stock, recórtala:
    `npm run assets:cut` (detecta el damero y lo convierte en transparencia real).
+   Si ya es una foto real (tienda, mesa, muñeca) no hace falta recorte: se usa
+   tal cual, apoyada sobre el `plate` de la tarjeta.
 3. Registra el slug en `scripts/build-assets.mjs` y ejecuta `npm run assets:build`
-   (genera WebP a 320/640/960 px y actualiza `images.json`).
-4. Añade la ficha en `catalog.ts` con `image: '<slug>'`.
+   (genera WebP a 320/640/960 px y actualiza `images.json`). Para más fotos del
+   mismo producto (otro color, otro ángulo), añade claves `<slug>-g2`, `-g3`…
+4. Añade la ficha en `catalog.ts` con `image: '<slug>'` y, si aplica,
+   `gallery: ['<slug>-g2', '<slug>-g3']`.
+
+**Varios colores del mismo modelo:** si la foto lo confirma (una caja, una
+etiqueta, una vista de conjunto), es un solo producto con `colors: [...]` y
+una imagen de cada color en `gallery` — no productos repetidos por color.
+**Modelos distintos de la misma marca** (p. ej. tres parlantes Harvic con
+referencia PR-810/811/831), en cambio, sí son productos separados.
 
 ---
 
