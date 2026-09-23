@@ -94,11 +94,13 @@ export const categories: Category[] = [
 export const products: Product[] = [
   {
     slug: 'audifonos-tws-pro',
-    // Nombre confirmado por la caja real (airpods3.png: "AIRPODS SERIE 4").
-    name: 'Audífonos AirPods Serie 4',
+    // Ojo: la foto muestra el tapón/chupito de silicona propio del diseño Pro
+    // (in-ear). El cliente confirmó por voz que esto NO es el Serie 4 (ese es
+    // open-fit, sin tapón) — ver 'audifonos-airpods-serie4' más abajo.
+    name: 'Audífonos Inalámbricos TWS Pro',
     category: 'audifonos',
     brand: null,
-    reference: 'Serie 4',
+    reference: null,
     price: null,
     priceBefore: null,
     stock: null,
@@ -113,10 +115,37 @@ export const products: Product[] = [
     rating: null,
     reviews: null,
     featured: true,
-    keywords: ['audifonos', 'airpods', 'tws', 'inalambricos', 'earbuds', 'bluetooth', 'serie 4'],
+    keywords: ['audifonos', 'airpods pro', 'tws', 'inalambricos', 'earbuds', 'bluetooth'],
     image: 'audifonos-tws-pro',
-    gallery: ['audifonos-tws-pro-g2', 'audifonos-tws-pro-g3', 'audifonos-tws-pro-g4'],
+    gallery: ['audifonos-tws-pro-g2', 'audifonos-tws-pro-g3'],
     imageRatio: 1272 / 1236,
+  },
+  {
+    // Estos SÍ son Serie 4 de verdad: caja real "AIRPODS SERIE 4" + el par
+    // sin tapón de silicona (open-fit), a diferencia del producto anterior.
+    slug: 'audifonos-airpods-serie4',
+    name: 'Audífonos AirPods Serie 4',
+    category: 'audifonos',
+    brand: null,
+    reference: 'Serie 4',
+    price: null,
+    priceBefore: null,
+    stock: null,
+    tagline: 'El diseño clásico, sin tapones.',
+    features: [
+      'Diseño open-fit sin puntas de silicona',
+      'Estuche de carga incluido',
+      'Cancelación activa de ruido (según empaque)',
+    ],
+    colors: [],
+    variants: [],
+    rating: null,
+    reviews: null,
+    featured: false,
+    keywords: ['audifonos', 'airpods', 'serie 4', 'tws', 'inalambricos', 'earbuds', 'bluetooth'],
+    image: 'audifonos-airpods-serie4',
+    gallery: [],
+    imageRatio: 757 / 751,
   },
   {
     slug: 'audifonos-jkmx-tws',

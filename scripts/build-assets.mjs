@@ -14,7 +14,7 @@ const products = {
   'audifonos-tws-pro': `${SRC_RAW}/audifonos.png`,
   'audifonos-tws-pro-g2': `${SRC_RAW}/airpods.png`,
   'audifonos-tws-pro-g3': `${SRC_RAW}/airpods2.png`,
-  'audifonos-tws-pro-g4': `${SRC_RAW}/airpods3.png`,
+  'audifonos-airpods-serie4': `${SRC_RAW}/airpods3.png`,
   'diadema-soundcore': `${CUT}/diadema.png`,
   'smartwatch-deportivo': `${CUT}/smartwatch.png`,
   'reloj-diduna-chrono': `${CUT}/reloj.png`,
