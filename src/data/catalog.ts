@@ -21,7 +21,7 @@ export const categories: Category[] = [
     slug: 'audifonos',
     name: 'Audífonos',
     blurb: 'Inalámbricos para el día a día',
-    cover: 'audifonos-tws-pro',
+    cover: 'audifonos-airpods-pro2',
   },
   {
     slug: 'diademas',
@@ -93,14 +93,14 @@ export const categories: Category[] = [
 
 export const products: Product[] = [
   {
-    slug: 'audifonos-tws-pro',
-    // Ojo: la foto muestra el tapón/chupito de silicona propio del diseño Pro
-    // (in-ear). El cliente confirmó por voz que esto NO es el Serie 4 (ese es
-    // open-fit, sin tapón) — ver 'audifonos-airpods-serie4' más abajo.
-    name: 'Audífonos Inalámbricos TWS Pro',
+    // Nombre confirmado directamente por el cliente (dueño del inventario real):
+    // son AirPods Pro 2da Generación, no un TWS genérico. La foto ya mostraba el
+    // tapón de silicona correcto para ese modelo — sólo el nombre estaba mal.
+    slug: 'audifonos-airpods-pro2',
+    name: 'Audífonos AirPods Pro (2da Generación)',
     category: 'audifonos',
     brand: null,
-    reference: null,
+    reference: '2da Generación',
     price: null,
     priceBefore: null,
     stock: null,
@@ -115,9 +115,18 @@ export const products: Product[] = [
     rating: null,
     reviews: null,
     featured: true,
-    keywords: ['audifonos', 'airpods pro', 'tws', 'inalambricos', 'earbuds', 'bluetooth'],
-    image: 'audifonos-tws-pro',
-    gallery: ['audifonos-tws-pro-g2', 'audifonos-tws-pro-g3'],
+    keywords: [
+      'audifonos',
+      'airpods pro',
+      '2da generacion',
+      'segunda generacion',
+      'tws',
+      'inalambricos',
+      'earbuds',
+      'bluetooth',
+    ],
+    image: 'audifonos-airpods-pro2',
+    gallery: ['audifonos-airpods-pro2-g2', 'audifonos-airpods-pro2-g3'],
     imageRatio: 1272 / 1236,
   },
   {

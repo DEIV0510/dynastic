@@ -11,9 +11,9 @@ fs.mkdirSync(OUT_B, { recursive: true });
 
 // slug -> source file (cutouts first, originals where alpha was already real)
 const products = {
-  'audifonos-tws-pro': `${SRC_RAW}/audifonos.png`,
-  'audifonos-tws-pro-g2': `${SRC_RAW}/airpods.png`,
-  'audifonos-tws-pro-g3': `${SRC_RAW}/airpods2.png`,
+  'audifonos-airpods-pro2': `${SRC_RAW}/audifonos.png`,
+  'audifonos-airpods-pro2-g2': `${SRC_RAW}/airpods.png`,
+  'audifonos-airpods-pro2-g3': `${SRC_RAW}/airpods2.png`,
   'audifonos-airpods-serie4': `${SRC_RAW}/airpods3.png`,
   'diadema-soundcore': `${CUT}/diadema.png`,
   'smartwatch-deportivo': `${CUT}/smartwatch.png`,

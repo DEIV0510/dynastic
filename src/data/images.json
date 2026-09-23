@@ -1,5 +1,5 @@
 {
-  "audifonos-tws-pro": {
+  "audifonos-airpods-pro2": {
     "sizes": [
       320,
       640,
@@ -8,7 +8,7 @@
     "w": 1272,
     "h": 1236
   },
-  "audifonos-tws-pro-g2": {
+  "audifonos-airpods-pro2-g2": {
     "sizes": [
       320,
       640
@@ -16,7 +16,7 @@
     "w": 716,
     "h": 712
   },
-  "audifonos-tws-pro-g3": {
+  "audifonos-airpods-pro2-g3": {
     "sizes": [
       320,
       640

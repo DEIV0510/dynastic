@@ -26,7 +26,7 @@ import { DEFAULT_WEIGHTS } from '../lib/ranking.ts';
  * de popularidad.
  */
 export const merchandising: MerchMap = {
-  'audifonos-tws-pro': {},
+  'audifonos-airpods-pro2': {},
   'audifonos-airpods-serie4': {},
   'audifonos-jkmx-tws': {},
   'diadema-soundcore': {},
