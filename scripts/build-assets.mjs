@@ -68,9 +68,21 @@ const products = {
   'intercom-sofistek-xz02': `${SRC_RAW}/intercomunicador2.png`,
   'intercom-sofistek-xz02-g2': `${SRC_RAW}/intercomunicador3.png`,
   'intercom-sofistek-xz02-g3': `${SRC_RAW}/intercomunicador4.png`,
-  'intercom-q58max': `${SRC_RAW}/intercomunicador5.png`,
-  'intercom-q58max-g2': `${SRC_RAW}/intercomunicador6.png`,
-  'intercom-q58max-g3': `${SRC_RAW}/intercomunicador7.png`,
+  // Q58-MAX: fotos propias en alta resolución (2026-10-29), reemplazan a las
+  // capturas pequeñas del proveedor. Los .heif se convierten antes con
+  // scripts/heic.mjs a scripts/_cut/*.jpg; aquí se recortan al producto.
+  'intercom-q58max': {
+    src: `${CUT}/IMG_2787.jpg`,
+    crop: { left: 0, top: 632, width: 3024, height: 2447 },
+  },
+  'intercom-q58max-g2': {
+    src: `${CUT}/IMG_2789.jpg`,
+    crop: { left: 0, top: 522, width: 3024, height: 2584 },
+  },
+  'intercom-q58max-g3': {
+    src: `${SRC_RAW}/IMG_2793.PNG`,
+    crop: { left: 0, top: 380, width: 1086, height: 740 },
+  },
   // parlantes
   'parlante-jbl-boombox3xl': `${SRC_RAW}/parlante10.png`,
   'parlante-jbl-boombox3xl-g2': `${SRC_RAW}/parlante11.png`,
@@ -91,7 +103,16 @@ const products = {
 const WIDTHS = [320, 640, 960];
 const manifest = {};
 
-for (const [slug, src] of Object.entries(products)) {
+// Una entrada de `products` es una ruta, o { src, crop } cuando la foto trae mucho
+// aire alrededor del producto (iPhone, 3024x4032): se recorta a { left, top, width,
+// height } en píxeles de la imagen ya derecha, sin pérdida, antes de reducirla.
+const load = async (spec) =>
+  typeof spec === 'string'
+    ? spec
+    : sharp(spec.src).rotate().extract(spec.crop).png({ compressionLevel: 1 }).toBuffer();
+
+for (const [slug, spec] of Object.entries(products)) {
+  const src = await load(spec);
   const meta = await sharp(src).metadata();
   const sizes = [];
   for (const w of WIDTHS) {

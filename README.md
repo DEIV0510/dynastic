@@ -69,6 +69,11 @@ ANTES / AHORA / -XX%, y el `price` del Schema.org de la ficha.
    `npm run assets:cut` (detecta el damero y lo convierte en transparencia real).
    Si ya es una foto real (tienda, mesa, muñeca) no hace falta recorte: se usa
    tal cual, apoyada sobre el `plate` de la tarjeta.
+   **Fotos de iPhone (`.heic`/`.heif`):** `npm run assets:heic` las convierte a JPG
+   en `scripts/_cut/` (sharp no decodifica HEVC; si el archivo llegó truncado por
+   unos bytes, el script lo repara solo). Como suelen traer mucho aire alrededor,
+   en `build-assets.mjs` se declaran con recorte:
+   `{ src, crop: { left, top, width, height } }`.
 3. Registra el slug en `scripts/build-assets.mjs` y ejecuta `npm run assets:build`
    (genera WebP a 320/640/960 px y actualiza `images.json`). Para más fotos del
    mismo producto (otro color, otro ángulo), añade claves `<slug>-g2`, `-g3`…
